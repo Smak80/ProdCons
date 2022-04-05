@@ -22,9 +22,14 @@ namespace ProdCons
             {
                 t = new Thread(() =>
                 {
-                    var fullData = data.GetData();
-                    var resultColor = Color.FromArgb(fullData[0], fullData[1], fullData[2]);
-                    Console.WriteLine("R={0}, G={1}, B={2}", resultColor.R, resultColor.G, resultColor.B);
+                    int i = 0;
+                    while (i < 10)
+                    {
+                        var fullData = data.GetData();
+                        var resultColor = Color.FromArgb(fullData[0], fullData[1], fullData[2]);
+                        Console.WriteLine("R={0}, G={1}, B={2}", resultColor.R, resultColor.G, resultColor.B);
+                        i++;
+                    }
                 });
                 t.Start();
             }

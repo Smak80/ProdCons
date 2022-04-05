@@ -27,10 +27,18 @@ public class Producer
     {
         if (!(t?.IsAlive ?? false))
         {
-            t = new Thread(() => {
-                Thread.Sleep(r.Next(1000, 15000));
-                int partialData = r.Next(255);
-                data.PutData(partialData, Type);
+            t = new Thread(() =>
+            {
+                int i = 0;
+                while (i < 10)
+                {
+                    var max = (Type == ProdType.Green) ? 2000 : 5000;
+                    Thread.Sleep(r.Next(1000, max));
+                    int partialData = r.Next(255);
+                    Console.WriteLine("Type: {0}, ColorComponent: {1}", Type, partialData);
+                    data.PutData(partialData, Type);
+                    i++;
+                }
             });
             t.Start();
         }
